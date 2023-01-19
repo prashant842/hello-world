@@ -3,77 +3,91 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-* {
-  box-sizing: border-box;
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
 }
 
-body {
-  margin: 0;
-  font-family: Arial;
-  font-size: 17px;
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
 
-#myVideo {
-  position: fixed;
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
   right: 0;
   bottom: 0;
-  min-width: 100%; 
-  min-height: 100%;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
 }
 
-.content {
-  position: fixed;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  color: #f1f1f1;
-  width: 100%;
-  padding: 20px;
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
 }
 
-#myBtn {
-  width: 200px;
-  font-size: 18px;
-  padding: 10px;
-  border: none;
-  background: #000;
-  color: #fff;
-  cursor: pointer;
+input:checked + .slider {
+  background-color: #2196F3;
 }
 
-#myBtn:hover {
-  background: #ddd;
-  color: black;
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
 }
 </style>
 </head>
 <body>
 
-<video autoplay muted loop id="myVideo">
-  <source src="rain.mp4" type="video/mp4">
-  Your browser does not support HTML5 video.
-</video>
+<h2>Toggle Switch</h2>
 
-<div class="content">
-  <h1>Heading</h1>
-  <p>Lorem ipsum dolor sit amet, an his etiam torquatos. Tollit soleat phaedrum te duo, eum cu recteque expetendis neglegentur. Cu mentitum maiestatis persequeris pro, pri ponderum tractatos ei. Id qui nemore latine molestiae, ad mutat oblique delicatissimi pro.</p>
-  <button id="myBtn" onclick="myFunction()">Pause</button>
-</div>
+<label class="switch">
+  <input type="checkbox">
+  <span class="slider"></span>
+</label>
 
-<script>
-var video = document.getElementById("myVideo");
-var btn = document.getElementById("myBtn");
+<label class="switch">
+  <input type="checkbox" checked>
+  <span class="slider"></span>
+</label><br><br>
 
-function myFunction() {
-  if (video.paused) {
-    video.play();
-    btn.innerHTML = "Pause";
-  } else {
-    video.pause();
-    btn.innerHTML = "Play";
-  }
-}
-</script>
+<label class="switch">
+  <input type="checkbox">
+  <span class="slider round"></span>
+</label>
+
+<label class="switch">
+  <input type="checkbox" checked>
+  <span class="slider round"></span>
+</label>
 
 </body>
-</html>
+</html> 
 
